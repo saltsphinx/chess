@@ -2,7 +2,7 @@ require_relative './board'
 
 class Chess
   def initialize
-    @board = Board.new
+    @game = Board.new
     @players = ['white', 'black']
   end
 
@@ -13,7 +13,7 @@ class Chess
   end
 
   def play_game
-    @board.setup
+    @game.setup
   end
 
   def rotate

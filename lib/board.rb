@@ -27,11 +27,9 @@ class Board
   end
 
   def take_piece
-    puts 'take'
   end
 
   def move_piece
-    puts 'move'
   end
 
   def place_main
