@@ -1,6 +1,6 @@
 class Board
   attr_reader :board
-  
+
   def initialize(board = {})
     @board = {}
   end
@@ -24,11 +24,7 @@ class Board
     destination = @board[destination_pos]
 
     return if piece_pos.nil?
-    return move_piece if destination == nil
-    take_piece unless piece_pos[-1] == destination[-1]
-  end
-
-  def take_piece
+    return move_piece if destination == nil || piece_pos[-1] == destination[-1]
   end
 
   def move_piece
