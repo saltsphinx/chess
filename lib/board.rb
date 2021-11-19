@@ -17,13 +17,13 @@ class Board
     @board[position]
   end
 
-  def player_move(piece_position, destination)
-    piece_position = @board[piece_position]
-    destination = @board[destination]
+  def player_move(piece_pos, destination_pos)
+    piece = @board[piece_pos]
+    destination = @board[destination_pos]
 
-    return if piece_position.nil?
+    return if piece_pos.nil?
     return move_piece if destination == nil
-    take_piece unless piece_position[-1] == destination[-1]
+    take_piece unless piece_pos[-1] == destination[-1]
   end
 
   def take_piece
