@@ -9,6 +9,7 @@ class Board
 
   def initialize(board = {})
     @board = board
+    @winner = nil
   end
 
   def setup
