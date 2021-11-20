@@ -23,7 +23,8 @@ class Chess
   end
 
   def player_turn
-    position = get_position
+    position, piece = get_position
+    destination = get_destination(piece)
   end
 
   def get_position
@@ -31,14 +32,27 @@ class Chess
     square = @game.check_pos(position, @players.first)
 
     if square
-      puts "#{square.capitalize} -> ?"
-      position
+      puts "#{square[0...-1].capitalize} -> ?"
+      return position, square
     else
       puts 'Choose only pieces that belong to you!'
       get_position
     end
   end
-  
+
+  def get_destination(piece)
+    destination = position_loop
+    square = @game.check_destin(destination, @players.first)
+
+    if square
+      square.nil? ? puts("#{piece[0...-1].capitalize} -> #{destination}") : puts("#{piece[0...-1].capitalize} -> #{square[0...-1].capitalize}")
+      square
+    else
+      puts 'Choose a square or enemy piece!'
+      get_destination(piece)
+    end
+  end
+
   def position_loop
     loop do
       input = user_input
