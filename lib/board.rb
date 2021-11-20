@@ -20,13 +20,13 @@ class Board
 
   def check_pos(position, player)
     square = @board[position]
-    square && square[-1] == player[1] ? square : false
+    square && square[-1] == player[0] ? square : false
   end
 
   def check_destin(destination, player)
     square = @board[destination]
-    return false if square.to_s[-1] == player[1]
-    square if square.nil? || square.to_s[-1] != player[1]
+    return false if square.to_s[-1] == player[0]
+    square if square.nil? || square.to_s[-1] != player[0]
   end
 
   def move_piece(piece_pos, destination_pos)

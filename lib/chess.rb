@@ -33,13 +33,16 @@ class Chess
     if square
       puts "#{square.capitalize} -> ?"
       position
+    else
+      puts 'Choose only pieces that belong to you!'
+      get_position
     end
   end
   
   def position_loop
     loop do
       input = user_input
-      return ':' + input if input.match(/^[a-h][1-8]$/)
+      return input.to_sym if input.match(/^[a-h][1-8]$/)
     end
   end
 
