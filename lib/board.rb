@@ -14,10 +14,6 @@ class Board
 
   def setup
     generate_board_squares
-    place_pieces
-  end
-
-  def place_pieces
     place_main
     place_pawn
   end
@@ -36,6 +32,10 @@ class Board
   def move_piece(piece_pos, destination_pos)
     @board[destination_pos] = @board[piece_pos]
     @board[piece_pos] = nil
+  end
+
+  def game_over?
+
   end
 
   def place_main

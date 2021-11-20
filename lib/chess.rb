@@ -14,7 +14,7 @@ class Chess
 
   def play_game
     @game.setup
-    loop do
+    until @game.game_over?
       @game.display_board
       puts @players.first + '\' turn, \'help\''
       player_turn
@@ -23,7 +23,7 @@ class Chess
   end
 
   def player_turn
-    
+
   end
 
   def rotate
