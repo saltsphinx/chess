@@ -4,8 +4,8 @@
 class Board
   attr_reader :board
 
-  UNI_PREFIX_WHITE = { ki: "\u265a", qu: "\u265b", ro: "\u265c", bi: "\u265d", kn: "\u265e", pa: "\u2659" }
-  UNI_PREFIX_BLACK = { ki: "\u2654", qu: "\u2655", ro: "\u2656", bi: "\u2657", kn: "\u2658", pa: "\u265f" }
+  UNI_PREFIX_WHITE = { ki: "\u265a", qu: "\u265b", ro: "\u265c", bi: "\u265d", kn: "\u265e", pa: "\u265f" }
+  UNI_PREFIX_BLACK = { ki: "\u2654", qu: "\u2655", ro: "\u2656", bi: "\u2657", kn: "\u2658", pa: "\u2659" }
 
   def initialize(board = {})
     @board = board
