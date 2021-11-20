@@ -24,7 +24,7 @@ class Board
     destination = @board[destination_pos]
 
     return if piece_pos.nil?
-    return move_piece(piece_pos, destination_pos) if destination == nil || piece_pos[-1] == destination[-1]
+    return move_piece(piece_pos, destination_pos) if destination == nil || piece[-1] != destination[-1]
   end
 
   def move_piece(piece_pos, destination_pos)
