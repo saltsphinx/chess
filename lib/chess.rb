@@ -27,6 +27,16 @@ class Chess
   end
 
   def get_position
+    position = position_loop
+    square = @game.check_pos(position, @players.first)
+
+    if square
+      puts "#{square.capitalize} -> ?"
+      position
+    end
+  end
+  
+  def position_loop
     loop do
       input = user_input
       return ':' + input if input.match(/^[a-h][1-8]$/)
