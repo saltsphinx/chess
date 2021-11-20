@@ -21,10 +21,6 @@ class Board
     place_pawn
   end
 
-  def check_piece(position)
-    @board[position]
-  end
-
   def check_pos(position, player)
     square = @board[position]
     square && square[-1] == player[-1] ? square : false
