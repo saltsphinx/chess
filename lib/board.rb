@@ -20,7 +20,7 @@ class Board
 
   def check_pos(position, player)
     square = @board[position]
-    square && square[-1] == player[1 ? square : false
+    square && square[-1] == player[1] ? square : false
   end
 
   def check_destin(destination, player)
