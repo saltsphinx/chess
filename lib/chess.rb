@@ -32,10 +32,10 @@ class Chess
 
   def main_menu
     puts "Chess\n\nOptions\n1 - Player\n2 - Load save"
-    load if main_menn_input == 2
+    load if main_menu_input == 2
   end
 
-  def main_menn_input
+  def main_menu_input
     user_input = nil
 
     until user_input
