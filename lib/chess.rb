@@ -20,6 +20,23 @@ class Chess
     @players[0], @players[1] = @players[1], @players[0]
   end
 
+  def user_input
+    input = gets.chomp
+    case
+    when input.match(/^[a-h][1-8]$/)
+      input
+    when input.match(/^save/)
+      puts 'save'
+    when input.match(/^load/)
+      puts 'load'
+    when input.match(/^list/)
+      puts 'list'
+    else
+      puts 'Bad input! Try again.'
+      user_input
+    end
+  end
+
   def load
 
   end
