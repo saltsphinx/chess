@@ -1,6 +1,9 @@
 require_relative './board'
+require_relative './ruleset'
 
 class Chess
+  include Ruleset
+
   def initialize
     @game = Board.new
     @players = ['white', 'black']
@@ -24,6 +27,7 @@ class Chess
 
   def player_turn
     position, piece = get_position
+    ruleset = Ruleset.send(piece.to_sym, position)
     destination = get_destination(piece)
   end
 
@@ -68,17 +72,13 @@ class Chess
     input = gets.chomp
     case
     when input.match(/^[a-h][1-8]$/)
-      input
+      return input
     when input.match(/^save/)
-      puts 'save'
     when input.match(/^load/)
-      puts 'load'
     when input.match(/^list/)
-      puts 'list'
-    else
-      puts 'Bad input! Enter the file(a-h) followed by the rank(1-8), ie. c6'
-      user_input
+    else puts 'Bad input! Enter the file(a-h) followed by the rank(1-8), ie. c6'
     end
+    user_input
   end
 
   def load
