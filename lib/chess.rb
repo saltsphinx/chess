@@ -16,14 +16,21 @@ class Chess
     @game.setup
     until @game.game_over?
       @game.display_board
-      puts @players.first + '\' turn, \'help\''
+      puts @players.first.capitalize + '\'s turn'
       player_turn
       rotate
     end
   end
 
   def player_turn
+    position = get_position
+  end
 
+  def get_position
+    loop do
+      input = user_input
+      return ':' + input if input.match(/^[a-h][1-8]$/)
+    end
   end
 
   def rotate
@@ -42,7 +49,7 @@ class Chess
     when input.match(/^list/)
       puts 'list'
     else
-      puts 'Bad input! Try again.'
+      puts 'Bad input! Enter the file(a-h) followed by the rank(1-8), ie. c6'
       user_input
     end
   end
@@ -58,7 +65,7 @@ class Chess
   private
 
   def main_menu
-    puts "Chess\n\nOptions\n1 - Player\n2 - Load save"
+    puts "Chess\n\nOptions\n1 - Play\n2 - Load save"
     load if main_menu_input == 2
   end
 

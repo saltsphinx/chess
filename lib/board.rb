@@ -34,9 +34,7 @@ class Board
     @board[piece_pos] = nil
   end
 
-  def game_over?
-
-  end
+  def game_over?; end
 
   def place_main
     main = %w[rook knight bishop queen king bishop knight rook]
