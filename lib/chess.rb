@@ -44,7 +44,7 @@ class Chess
     destination = position_loop
     square = @game.check_destin(destination, @players.first)
 
-    if square
+    unless square == false
       square.nil? ? puts("#{piece[0...-1].capitalize} -> #{destination}") : puts("#{piece[0...-1].capitalize} -> #{square[0...-1].capitalize}")
       square
     else
