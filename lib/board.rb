@@ -29,6 +29,11 @@ class Board
     square[-1] == player[0] ? false : true
   end
 
+  def empty?(destination)
+    square = @board[destination]
+    square.nil? ? true : false
+  end
+
   def check_destin(destination, player)
     square = @board[destination]
     return false if square.to_s[-1] == player[0]
