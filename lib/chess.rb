@@ -3,6 +3,7 @@ require_relative './ruleset'
 
 class Chess
   include Ruleset
+  attr_reader :game
 
   def initialize
     @game = Board.new
