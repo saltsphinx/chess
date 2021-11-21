@@ -29,7 +29,14 @@ class Chess
   def player_turn
     position, piece = get_position
     ruleset = self.send(piece.to_sym, position)
-    destination = get_destination(piece)
+    ruleset.empty? ? no_moves(piece) : puts("Possible moves: " + ruleset.join(', '))
+    destination = destination_loop(piece, ruleset)
+    @game.move_piece(position, destination)
+  end
+
+  def no_moves(piece)
+    puts "#{piece.capitalize} has no moves!"
+    player_turn
   end
 
   def get_position
@@ -50,8 +57,8 @@ class Chess
     square = @game.check_destin(destination, @players.first)
 
     unless square == false
-      square.nil? ? puts("#{piece[0...-1].capitalize} -> #{destination}") : puts("#{piece[0...-1].capitalize} -> #{square[0...-1].capitalize}")
-      square
+      square.nil? ? puts("#{piece.capitalize} -> #{destination}") : puts("#{piece.capitalize} -> #{square[0...-1].capitalize}")
+      destination
     else
       puts 'Choose a square or enemy piece!'
       get_destination(piece)
@@ -62,6 +69,14 @@ class Chess
     loop do
       input = user_input
       return input.to_sym if input.match(/^[a-h][1-8]$/)
+    end
+  end
+
+  def destination_loop(piece, ruleset)
+    loop do
+      destination = get_destination(piece)
+      return destination if ruleset.include?(destination.to_sym)
+      puts 'Illegal move!'
     end
   end
 
