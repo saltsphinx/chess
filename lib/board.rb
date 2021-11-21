@@ -31,7 +31,7 @@ class Board
 
   def empty?(destination)
     square = @board[destination]
-    square.nil? ? true : false
+    false unless square.nil?
   end
 
   def check_destin(destination, player)
@@ -78,7 +78,7 @@ class Board
     end
   end
 
-  def display_board
+  def display
     (1..8).reverse_each do |rank|
       puts "  a b c d e f g h\n" if rank == 8
       print rank.to_s

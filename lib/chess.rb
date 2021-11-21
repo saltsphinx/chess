@@ -19,7 +19,7 @@ class Chess
   def play_game
     @game.setup
     until @game.game_over?
-      @game.display_board
+      @game.display
       puts @players.first.capitalize + '\'s turn'
       player_turn
       rotate
@@ -28,7 +28,7 @@ class Chess
 
   def player_turn
     position, piece = get_position
-    ruleset = Ruleset.send(piece.to_sym, position)
+    ruleset = self.send(piece.to_sym, position)
     destination = get_destination(piece)
   end
 
@@ -38,7 +38,7 @@ class Chess
 
     if square
       puts "#{square[0...-1].capitalize} -> ?"
-      return position, square
+      return position, square[0...-1]
     else
       puts 'Choose only pieces that belong to you!'
       get_position
