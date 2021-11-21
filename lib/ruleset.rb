@@ -31,7 +31,7 @@ module Ruleset
     rank = position[1]
     moves = []
 
-    moves += pawn_up(file, rank) + pawn_attack(file, rank)
+    moves += pawn_move(file, rank) + pawn_attack(file, rank)
   end
 
   def up(file, rank)
@@ -154,9 +154,9 @@ module Ruleset
     moves
   end
 
-  def pawn_up(file, rank)
+  def pawn_move(file, rank)
     moves = []
-    ranks = RANK[RANK.index(rank) + 1..RANK.index(rank) + 2]
+    ranks = @players.first == 'white' ? RANK[RANK.index(rank) + 1..RANK.index(rank) + 2] : pawn_black(file, rank)
 
     for rank in ranks
       destination = (file + rank).to_sym
@@ -167,11 +167,18 @@ module Ruleset
     moves
   end
 
+  def pawn_black(file, rank)
+    ranks = []
+    ranks << RANK[RANK.index(rank) - 2] if RANK.index(rank) - 2 >= 0
+    ranks << RANK[RANK.index(rank) - 1] if RANK.index(rank) - 1 >= 0
+    ranks.reverse
+  end
+
   def pawn_attack(file, rank)
     moves = []
-    rank = RANK[RANK.index(rank) + 1]
+    rank = @players.first == 'white' ? RANK[RANK.index(rank) + 1] : RANK[RANK.index(rank) - 1]
     files = []
-    files << FILE[FILE.index(file) + 1]
+    files << FILE[FILE.index(file) + 1] unless FILE.index(file) + 1 > 7
     files << FILE[FILE.index(file) - 1] unless FILE.index(file) - 1 < 0
 
     files.each do |file|
@@ -179,7 +186,7 @@ module Ruleset
       destination = (file + rank).to_sym
       result = @game.enemy?(destination, @players.first)
       break if result == false
-      moves << destination
+      moves << destination if result == true
     end
 
     moves
