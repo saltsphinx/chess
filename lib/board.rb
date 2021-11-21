@@ -23,6 +23,12 @@ class Board
     square && square[-1] == player[0] ? square : false
   end
 
+  def enemy?(destination, player)
+    square = @board[destination]
+    return if square.nil?
+    square[-1] == player[0] ? false : true
+  end
+
   def check_destin(destination, player)
     square = @board[destination]
     return false if square.to_s[-1] == player[0]
