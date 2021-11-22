@@ -12,6 +12,13 @@ class Board
     @winner = nil
   end
 
+  def check_pawns
+    bottom_rank = [*'a'..'h'].map { |file| (file << '1').to_sym }
+    top_rank = [*'a'..'h'].map { |file| (file << '8').to_sym }
+    pawn_position = bottom_rank.select { |pos| @board[pos] == :pawnb }.first || top_rank.select { |pos| @board[pos] == :pawnw }.first
+    return pawn_position if pawn_position
+  end
+
   def setup
     generate_board_squares
     place_main
@@ -45,7 +52,13 @@ class Board
     @board[piece_pos] = nil
   end
 
-  def game_over?; end
+  def set_piece(piece_pos, piece_name)
+    @board[piece_pos] = piece_name
+  end
+
+  def find_piece(piece)
+    @board.key(piece)
+  end
 
   def place_main
     main = %w[rook knight bishop queen king bishop knight rook]
